@@ -68,8 +68,35 @@
   height: 100%;
 }
 
+.footer__copyright-github {
+  color: #ffff;
+  text-decoration: none;
+}
+
 .message {
   width: 50%;
   font-size: 20px;
   color: #ffff;
+}
+
+.movies-list__card-subtitle {
+  color: #ffff;
+}
+
+.header__searchbar-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.header__searchbar-btn {
+  position: absolute;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: url(./assets/img/search_header_input_btn.png) center center no-repeat;
+  background-color: transparent;
+  cursor: pointer;
 }
