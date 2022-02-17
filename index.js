@@ -1,13 +1,13 @@
 const searchbar = document.querySelector('.header__searchbar');
 searchbar.focus();
 
-const fetchFilms = async function getData(title, apiKey = '&apikey=b6e36538', url = 'http://www.omdbapi.com/?') {
+const fetchFilms = async function getData(title, apiKey = '&apikey=b6e36538', url = 'https://www.omdbapi.com/?') {
   const filmRes = await fetch(url + 't=' + title + apiKey);
   const filmData = await filmRes.json();
   return filmData;
 };
 
-const findFilms = async function findData(request, apiKey = '&apikey=b6e36538', url = 'http://www.omdbapi.com/?') {
+const findFilms = async function findData(request, apiKey = '&apikey=b6e36538', url = 'https://www.omdbapi.com/?') {
   const searchRes = await fetch(url + 's=' + request + apiKey);
   const searchData = await searchRes.json();
   console.log(searchData);
