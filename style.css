@@ -73,10 +73,23 @@
   text-decoration: none;
 }
 
-.message {
-  width: 50%;
-  font-size: 20px;
-  color: #ffff;
+.movies-list {
+  display: flex;
+  justify-content: center;
+}
+
+.movies-list__cards {
+  width: 90%;
+}
+
+.movies-list__cards-start {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.movies-list__card {
+  width: 300px;
 }
 
 .movies-list__card-subtitle {
