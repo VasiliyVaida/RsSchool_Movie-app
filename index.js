@@ -1,5 +1,6 @@
 const searchbar = document.querySelector('.header__searchbar');
 searchbar.focus();
+const searchbtn = document.querySelector('.header__searchbar-btn');
 
 const fetchFilms = async function getData(title, apiKey = '&apikey=b6e36538', url = 'https://www.omdbapi.com/?') {
   const filmRes = await fetch(url + 't=' + title + apiKey);
@@ -57,21 +58,37 @@ const showStartFilms = () => {
   });
 };
 
+const showSearhedFilms = () => {
+  const startFilmsWrapper = document.querySelector('.movies-list__cards-start');
+  const moviesSection = document.querySelector('.movies-list__cards');
+  startFilmsWrapper.style.display = 'none';
+  const searchFilmsWrapper = document.createElement('div');
+  searchFilmsWrapper.classList.add('movies-list__cards-search');
+  moviesSection.prepend(searchFilmsWrapper);
+  const searchFilms = findFilms(searchbar.value);
+  searchFilms.then((result) => {
+    result.Search.forEach((item) => {
+      makeFilmCard(item.Poster, item.Title, item.Plot, searchFilmsWrapper);
+    });
+  });
+};
+
 showStartFilms();
 
 searchbar.addEventListener('keyup', (e) => {
   if (e.key === 'Enter') {
-    const startFilmsWrapper = document.querySelector('.movies-list__cards-start');
-    const moviesSection = document.querySelector('.movies-list__cards');
-    startFilmsWrapper.style.display = 'none';
-    const searchFilmsWrapper = document.createElement('div');
-    searchFilmsWrapper.classList.add('movies-list__cards-search');
-    moviesSection.prepend(searchFilmsWrapper);
-    const searchFilms = findFilms(searchbar.value);
-    searchFilms.then((result) => {
-      result.Search.forEach((item) => {
-        makeFilmCard(item.Poster, item.Title, item.Plot, searchFilmsWrapper);
-      });
-    });
+    showSearhedFilms();
+  }
+});
+
+searchbtn.addEventListener('click', () => {
+  searchbtn.classList.toggle('header__searchbar-btn_serched');
+  if (searchbtn.classList.contains('header__searchbar-btn_serched')) {
+    showSearhedFilms();
+    searchbtn.style.backgroundImage = "url('./assets/img/close_header_input_btn.png')";
+  } else {
+    showStartFilms();
+    searchbtn.style.backgroundImage = "url('./assets/img/search_header_input_btn.png')";
+    searchbar.value = '';
   }
 });
